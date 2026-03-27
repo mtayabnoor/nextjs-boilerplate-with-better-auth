@@ -2,21 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { Source_Code_Pro, Source_Serif_4, Figtree, Playfair_Display } from "next/font/google";
+import { Figtree, Playfair_Display, Source_Code_Pro } from 'next/font/google'
 import { cn } from "@/lib/utils";
 
-const playfairDisplayHeading = Playfair_Display({subsets:['latin'],variable:'--font-heading'});
 
-const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
 
-const sourceCodePro = Source_Code_Pro({
+const openSans = Figtree({
+  variable: '--font-figtree',
+  subsets: ['latin']
+})
+
+const sourceSerif4 = Playfair_Display({
+  variable: '--font-playfair-display',
+  subsets: ['latin']
+})
+
+const sourceCode = Source_Code_Pro({
   subsets: ["latin"],
-  variable: "--font-source-code-pro", // Matches the variable in your globals.css
-});
-
-const sourceSerif4 = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-source-serif-4", // Matches the variable in your globals.css
+  variable: "--font-source-code-pro", // Matches your CSS
 });
 
 export const metadata: Metadata = {
@@ -30,14 +33,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html 
-      lang="en" 
-      suppressHydrationWarning 
+    <html
+      lang="en"
+      suppressHydrationWarning
       className={cn(
-              "h-full antialiased font-sans", 
-              sourceCodePro.variable, 
-              sourceSerif4.variable
-            , "font-sans", figtree.variable, playfairDisplayHeading.variable)}
+        openSans.variable,
+        sourceSerif4.variable,
+        sourceCode.variable,
+        '...'
+      )}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider
