@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <AppSidebar />
       <SidebarInset className="flex flex-col h-dvh overflow-hidden">
         <SiteHeader />
-        <main className="flex-1 mt-[var(--header-height)] overflow-y-auto w-full max-w-7xl mx-auto px-5 md:px-10">
+        <main className="flex-1 overflow-y-auto w-full max-w-7xl mx-auto px-5 md:px-10">
           {children}
         </main>
       </SidebarInset>
