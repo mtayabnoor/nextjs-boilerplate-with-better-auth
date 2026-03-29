@@ -1,10 +1,9 @@
-import Header from '@/components/shared/header';
-
+import Header from '@/components/shared/dashboard-header';
 
 export default function Dashboard() {
   return (
     <div>
-      <Header />
+      Dashboard
     </div>
   );
 }

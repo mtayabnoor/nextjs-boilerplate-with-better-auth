@@ -3,10 +3,10 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { DM_Sans } from 'next/font/google';
-import { cn } from '@/lib/utils';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' });
+
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,23 +19,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn('...', 'font-sans', dmSans.variable)}
-    >
+    <html lang="en" suppressHydrationWarning className={`font-sans ${dmSans.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
-        <TooltipProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <TooltipProvider>
+            {children}
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
-        </TooltipProvider>
       </body>
     </html>
   );
