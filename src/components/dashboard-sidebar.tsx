@@ -2,11 +2,15 @@
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import {
   IconChartBar,
+  IconDeviceDesktop,
   IconDashboard,
   IconFolder,
   IconListDetails,
+  IconMoon,
+  IconSun,
   IconUsers,
 } from '@tabler/icons-react';
 import {
@@ -20,6 +24,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   useSidebar,
+  SidebarGroupLabel
 } from '@/components/ui/sidebar';
 
 import {
@@ -31,7 +36,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   IconCreditCard,
   IconDotsVertical,
@@ -75,6 +80,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const { theme, setTheme } = useTheme();
 
   const { isMobile } = useSidebar();
 
@@ -96,6 +102,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent className="flex flex-col gap-2">
+            <SidebarGroupLabel>Main</SidebarGroupLabel>
             <SidebarMenu>
               {data.navMain.map((item) => (
                 <SidebarMenuItem key={item.title}>
@@ -135,7 +142,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <DropdownMenuLabel className="p-0 font-normal">
                     <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                       <Avatar className="h-8 w-8 rounded-lg">
-                        <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                        <AvatarFallback className="rounded-lg">{user?.name?.charAt(0)}</AvatarFallback>
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
                         <span className="truncate font-medium">{user?.name}</span>
@@ -143,6 +150,36 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                           {user?.email}
                         </span>
                       </div>
+                    </div>
+                  </DropdownMenuLabel>
+                </DropdownMenuGroup>
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel className="px-1 py-1">
+                    <div className="inline-flex rounded-lg border border-border bg-muted/40 p-1">
+                      <button
+                        type="button"
+                        aria-label="Use light theme"
+                        onClick={() => setTheme('light')}
+                        className={`inline-flex size-7 items-center justify-center rounded-md transition ${theme === 'light' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+                      >
+                        <IconSun className="size-4" />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Use dark theme"
+                        onClick={() => setTheme('dark')}
+                        className={`inline-flex size-7 items-center justify-center rounded-md transition ${theme === 'dark' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+                      >
+                        <IconMoon className="size-4" />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Use system theme"
+                        onClick={() => setTheme('system')}
+                        className={`inline-flex size-7 items-center justify-center rounded-md transition ${theme === 'system' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+                      >
+                        <IconDeviceDesktop className="size-4" />
+                      </button>
                     </div>
                   </DropdownMenuLabel>
                 </DropdownMenuGroup>
@@ -161,6 +198,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     Notifications
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+
+                
+
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
                   <IconLogout />
