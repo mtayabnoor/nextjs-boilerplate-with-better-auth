@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Link from 'next/link';
+import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Card,
   CardContent,
@@ -13,14 +13,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { resendVerificationEmail } from "@/lib/actions";
-import { authClient } from "@/lib/auth-client";
+} from '@/components/ui/card';
+import { resendVerificationEmail } from '@/lib/actions';
+import { authClient } from '@/lib/auth-client';
 
 function VerifyEmailContent() {
   const params = useSearchParams();
   const router = useRouter();
-  const emailFromQuery = params.get("email") || "";
+  const emailFromQuery = params.get('email') || '';
 
   const [email, setEmail] = useState(emailFromQuery);
   const [resending, setResending] = useState(false);
@@ -47,7 +47,7 @@ function VerifyEmailContent() {
 
   const onResend = async () => {
     if (!email) {
-      toast.error("Please enter your email first.");
+      toast.error('Please enter your email first.');
       return;
     }
 
@@ -70,12 +70,10 @@ function VerifyEmailContent() {
         <Card className="w-full sm:max-w-md">
           <CardHeader>
             <CardTitle>Email Verified</CardTitle>
-            <CardDescription>
-              Your email has been verified successfully.
-            </CardDescription>
+            <CardDescription>Your email has been verified successfully.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button onClick={() => router.push("/dashboard")}>Go to Dashboard</Button>
+            <Button onClick={() => router.push('/dashboard')}>Go to Dashboard</Button>
           </CardContent>
         </Card>
       )}
@@ -90,8 +88,8 @@ function VerifyEmailContent() {
 
           <CardContent className="space-y-4">
             <div className="rounded-md border bg-muted/40 p-3 text-sm text-muted-foreground">
-              Already verified before? Try signing in directly. If you forgot
-              your password, reset it from sign in.
+              Already verified before? Try signing in directly. If you forgot your
+              password, reset it from sign in.
             </div>
 
             <div className="space-y-2">
@@ -108,10 +106,10 @@ function VerifyEmailContent() {
                 disabled={resending || cooldown > 0}
               >
                 {resending
-                  ? "Sending..."
+                  ? 'Sending...'
                   : cooldown > 0
                     ? `Resend available in ${cooldown}s`
-                    : "Resend verification email"}
+                    : 'Resend verification email'}
               </Button>
             </div>
           </CardContent>

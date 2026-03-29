@@ -1,39 +1,34 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { 
-  BarChart3, 
-  CreditCard, 
-  LayoutDashboard, 
-  Wallet
-} from "lucide-react";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { BarChart3, CreditCard, LayoutDashboard, Wallet } from 'lucide-react';
 
 const routes = [
   {
-    label: "Dashboard",
+    label: 'Dashboard',
     icon: LayoutDashboard,
-    href: "/dashboard",
-    color: "text-primary",
+    href: '/dashboard',
+    color: 'text-primary',
   },
   {
-    label: "Transactions",
+    label: 'Transactions',
     icon: CreditCard,
-    href: "/transactions",
-    color: "text-sky-500",
+    href: '/transactions',
+    color: 'text-sky-500',
   },
   {
-    label: "Subscriptions",
+    label: 'Subscriptions',
     icon: Wallet,
-    href: "/subscriptions",
-    color: "text-violet-500",
+    href: '/subscriptions',
+    color: 'text-violet-500',
   },
   {
-    label: "Insights",
+    label: 'Insights',
     icon: BarChart3,
-    href: "/insights",
-    color: "text-pink-500",
+    href: '/insights',
+    color: 'text-pink-500',
   },
 ];
 
@@ -55,12 +50,14 @@ export const Sidebar = () => {
               key={route.href}
               href={route.href}
               className={cn(
-                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition",
-                pathname === route.href ? "text-primary bg-primary/10" : "text-muted-foreground"
+                'text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition',
+                pathname === route.href
+                  ? 'text-primary bg-primary/10'
+                  : 'text-muted-foreground',
               )}
             >
               <div className="flex items-center flex-1">
-                <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
+                <route.icon className={cn('h-5 w-5 mr-3', route.color)} />
                 {route.label}
               </div>
             </Link>

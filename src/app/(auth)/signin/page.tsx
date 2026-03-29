@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
   FieldDescription,
-} from "@/components/ui/field";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signinSchema } from "@/lib/validators";
-import { Signin } from "@/lib/types";
+} from '@/components/ui/field';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signinSchema } from '@/lib/validators';
+import { Signin } from '@/lib/types';
 
 export default function SignInPage() {
   const router = useRouter();
@@ -36,8 +36,8 @@ export default function SignInPage() {
   } = useForm<Signin>({
     resolver: zodResolver(signinSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -46,27 +46,23 @@ export default function SignInPage() {
       { email: values.email, password: values.password },
       {
         onSuccess: () => {
-          toast.success("Logged in successfully");
-          router.push("/dashboard");
+          toast.success('Logged in successfully');
+          router.push('/dashboard');
         },
         onError: (ctx) => {
-          const errorMessage = ctx.error.message || "Signin failed";
-          const requiresVerification = /email_not_verified|verify/i.test(
-            errorMessage,
-          );
+          const errorMessage = ctx.error.message || 'Signin failed';
+          const requiresVerification = /email_not_verified|verify/i.test(errorMessage);
 
           if (requiresVerification) {
-            toast.error("Please verify your email before signing in.");
-            router.push(
-              `/verify-email?email=${encodeURIComponent(values.email)}`,
-            );
+            toast.error('Please verify your email before signing in.');
+            router.push(`/verify-email?email=${encodeURIComponent(values.email)}`);
             return;
           }
 
-          setError("root", {
-            message: errorMessage || "Invalid email or password",
+          setError('root', {
+            message: errorMessage || 'Invalid email or password',
           });
-          toast.error(errorMessage || "Signin failed");
+          toast.error(errorMessage || 'Signin failed');
         },
       },
     );
@@ -92,7 +88,7 @@ export default function SignInPage() {
                       id="email"
                       type="email"
                       placeholder="m@example.com"
-                      {...register("email")}
+                      {...register('email')}
                       required
                     />
                     {errors.email && <FieldError errors={[errors.email]} />}
@@ -110,16 +106,14 @@ export default function SignInPage() {
                     <Input
                       id="password"
                       type="password"
-                      {...register("password")}
+                      {...register('password')}
                       required
                     />
-                    {errors.password && (
-                      <FieldError errors={[errors.password]} />
-                    )}
+                    {errors.password && <FieldError errors={[errors.password]} />}
                   </Field>
                   <Field>
                     <Button type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Logging in..." : "Login"}
+                      {isSubmitting ? 'Logging in...' : 'Login'}
                     </Button>
                     {errors.root && <FieldError errors={[errors.root]} />}
                     <FieldDescription className="text-center">

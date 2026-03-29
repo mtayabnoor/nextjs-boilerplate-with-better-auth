@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,15 +39,19 @@
   --radius: 0.45rem;
   --shadow-2xs: 0px 1px 2.5px 0px rgb(32 104 140 / 0.03);
   --shadow-xs: 0px 1px 2.5px 0px rgb(32 104 140 / 0.03);
-  --shadow-sm: 0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 1px 2px -1px rgb(32 104 140 / 0.06);
-  --shadow: 0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 1px 2px -1px rgb(32 104 140 / 0.06);
-  --shadow-md: 0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 2px 4px -1px rgb(32 104 140 / 0.06);
-  --shadow-lg: 0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 4px 6px -1px rgb(32 104 140 / 0.06);
-  --shadow-xl: 0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 8px 10px -1px rgb(32 104 140 / 0.06);
+  --shadow-sm:
+    0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 1px 2px -1px rgb(32 104 140 / 0.06);
+  --shadow:
+    0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 1px 2px -1px rgb(32 104 140 / 0.06);
+  --shadow-md:
+    0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 2px 4px -1px rgb(32 104 140 / 0.06);
+  --shadow-lg:
+    0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 4px 6px -1px rgb(32 104 140 / 0.06);
+  --shadow-xl:
+    0px 1px 2.5px 0px rgb(32 104 140 / 0.06), 0px 8px 10px -1px rgb(32 104 140 / 0.06);
   --shadow-2xl: 0px 1px 2.5px 0px rgb(32 104 140 / 0.15);
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
-
 }
 
 .dark {
@@ -159,6 +163,7 @@ select {
   font-size: 16px !important;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }

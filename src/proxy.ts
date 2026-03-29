@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { auth } from '@/lib/auth';
 
 export default async function proxy(request: NextRequest) {
   // Better Auth uses "better-auth.session_token" cookie by default (or __Secure- prefix on Vercel)
@@ -10,16 +10,15 @@ export default async function proxy(request: NextRequest) {
 
   const isLoggedIn = !!session?.user;
 
-  const isDashboardRoute =
-    request.nextUrl.pathname.startsWith("/dashboard")
+  const isDashboardRoute = request.nextUrl.pathname.startsWith('/dashboard');
 
   if (!isLoggedIn && isDashboardRoute) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+    return NextResponse.redirect(new URL('/signin', request.url));
   }
 
   if (isLoggedIn && isDashboardRoute && !session.user.emailVerified) {
-    const verifyUrl = new URL("/verify-email", request.url);
-    verifyUrl.searchParams.set("email", session.user.email);
+    const verifyUrl = new URL('/verify-email', request.url);
+    verifyUrl.searchParams.set('email', session.user.email);
     return NextResponse.redirect(verifyUrl);
   }
 
@@ -28,7 +27,7 @@ export default async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/dashboard/:path*",
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|robots.txt|sitemap.xml).*)",
+    '/dashboard/:path*',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|robots.txt|sitemap.xml).*)',
   ],
 };

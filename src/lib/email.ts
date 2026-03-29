@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import { Resend } from 'resend';
 
 type SendVerificationEmailInput = {
   email: string;
@@ -63,40 +63,32 @@ function buildForgotPasswordEmailHtml(name: string, resetUrl: string) {
   `;
 }
 
-export async function sendVerificationEmailWithResend(
-  input: SendVerificationEmailInput,
-) {
+export async function sendVerificationEmailWithResend(input: SendVerificationEmailInput) {
   if (!resend || !fromEmail) {
-    throw new Error(
-      "Missing RESEND_API_KEY or RESEND_FROM_EMAIL environment variable.",
-    );
+    throw new Error('Missing RESEND_API_KEY or RESEND_FROM_EMAIL environment variable.');
   }
 
-  const name = input.name?.trim() || "there";
+  const name = input.name?.trim() || 'there';
 
   await resend.emails.send({
     from: fromEmail,
     to: input.email,
-    subject: "Verify your email",
+    subject: 'Verify your email',
     html: buildVerificationEmailHtml(name, input.verifyUrl),
   });
 }
 
-export function sendForgotPasswordEmailWithResend(
-  input: SendForgotPasswordEmailInput,
-) {
+export function sendForgotPasswordEmailWithResend(input: SendForgotPasswordEmailInput) {
   if (!resend || !fromEmail) {
-    throw new Error(
-      "Missing RESEND_API_KEY or RESEND_FROM_EMAIL environment variable.",
-    );
+    throw new Error('Missing RESEND_API_KEY or RESEND_FROM_EMAIL environment variable.');
   }
 
-  const name = input.name?.trim() || "there";
+  const name = input.name?.trim() || 'there';
 
   return resend.emails.send({
     from: fromEmail,
     to: input.email,
-    subject: "Reset your password",
-    html: buildForgotPasswordEmailHtml(name,  input.resetUrl),
+    subject: 'Reset your password',
+    html: buildForgotPasswordEmailHtml(name, input.resetUrl),
   });
 }

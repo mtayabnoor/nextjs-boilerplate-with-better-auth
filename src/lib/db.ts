@@ -14,23 +14,23 @@ export { prisma };
 */
 
 // src/lib/prisma.ts
-import "dotenv/config";
-import { PrismaClient } from "./generated/prisma/client";
-import { PrismaNeon } from "@prisma/adapter-neon";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { neonConfig } from "@neondatabase/serverless";
-import ws from "ws";
+import 'dotenv/config';
+import { PrismaClient } from './generated/prisma/client';
+import { PrismaNeon } from '@prisma/adapter-neon';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { neonConfig } from '@neondatabase/serverless';
+import ws from 'ws';
 
-const connectionString = process.env.DATABASE_URL || "";
-const isNeon = connectionString.includes("neon.tech");
+const connectionString = process.env.DATABASE_URL || '';
+const isNeon = connectionString.includes('neon.tech');
 
 let adapter: PrismaNeon | PrismaPg;
 if (isNeon) {
-  console.log("Neon Postgres Adapter");
+  console.log('Neon Postgres Adapter');
   neonConfig.webSocketConstructor = ws;
   adapter = new PrismaNeon({ connectionString });
 } else {
-  console.log("Traditional Postgres Adapter");
+  console.log('Traditional Postgres Adapter');
   adapter = new PrismaPg({ connectionString });
 }
 const prisma = new PrismaClient({ adapter });

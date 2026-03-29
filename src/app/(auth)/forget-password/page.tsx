@@ -1,26 +1,26 @@
-"use client";
+'use client';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
   FieldDescription,
-} from "@/components/ui/field";
-import { resetPasswordSchema } from "@/lib/validators";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@/lib/auth-client";
-import { ResetPassword } from "@/lib/types";
-import { toast } from "sonner";
+} from '@/components/ui/field';
+import { resetPasswordSchema } from '@/lib/validators';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
+import { ResetPassword } from '@/lib/types';
+import { toast } from 'sonner';
 
 export default function ForgetPasswordPage() {
   const {
@@ -30,7 +30,7 @@ export default function ForgetPasswordPage() {
   } = useForm({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
   });
 
@@ -38,11 +38,11 @@ export default function ForgetPasswordPage() {
     await authClient.requestPasswordReset(
       {
         email: values.email,
-        redirectTo: "/reset-password",
+        redirectTo: '/reset-password',
       },
       {
         onSuccess: () => {
-          toast.success("Password reset email sent. Please check your inbox.");
+          toast.success('Password reset email sent. Please check your inbox.');
         },
       },
     );
@@ -68,18 +68,19 @@ export default function ForgetPasswordPage() {
                       id="email"
                       type="email"
                       placeholder="m@example.com"
-                      {...register("email")}
+                      {...register('email')}
                       required
                     />
                     {errors.email && <FieldError errors={[errors.email]} />}
                   </Field>
                   <Field>
                     <Button type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending..." : "Send Reset Link"}
+                      {isSubmitting ? 'Sending...' : 'Send Reset Link'}
                     </Button>
                     {errors.root && <FieldError errors={[errors.root]} />}
                     <FieldDescription className="text-center">
-                      Back to <a href="/signin">Sign in</a>. Don&apos;t have an account? <a href="/signup">Sign up</a>
+                      Back to <a href="/signin">Sign in</a>. Don&apos;t have an account?{' '}
+                      <a href="/signup">Sign up</a>
                     </FieldDescription>
                   </Field>
                 </FieldGroup>

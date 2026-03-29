@@ -1,31 +1,31 @@
-"use client";
+'use client';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
   FieldDescription,
-} from "@/components/ui/field";
-import { newPasswordSchema } from "@/lib/validators";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@/lib/auth-client";
-import { NewPassword } from "@/lib/types";
-import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
+} from '@/components/ui/field';
+import { newPasswordSchema } from '@/lib/validators';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
+import { NewPassword } from '@/lib/types';
+import { toast } from 'sonner';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function ResetPasswordPage() {
   const params = useSearchParams();
-  const token = params.get("token") || "";
+  const token = params.get('token') || '';
   const router = useRouter();
   const {
     register,
@@ -34,8 +34,8 @@ export default function ResetPasswordPage() {
   } = useForm({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     },
   });
 
@@ -47,10 +47,8 @@ export default function ResetPasswordPage() {
       },
       {
         onSuccess: () => {
-          toast.success("Password has been reset successfully.");
-          router.push(
-              `/signin`,
-            );
+          toast.success('Password has been reset successfully.');
+          router.push(`/signin`);
         },
       },
     );
@@ -64,8 +62,7 @@ export default function ResetPasswordPage() {
             <CardHeader>
               <CardTitle>Reset your password</CardTitle>
               <CardDescription>
-                Please set your new password below. Make sure it&apos;s strong
-                and secure.
+                Please set your new password below. Make sure it&apos;s strong and secure.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -77,33 +74,27 @@ export default function ResetPasswordPage() {
                       id="password"
                       type="password"
                       placeholder="Enter your new password"
-                      {...register("password")}
+                      {...register('password')}
                       required
                     />
-                    {errors.password && (
-                      <FieldError errors={[errors.password]} />
-                    )}
+                    {errors.password && <FieldError errors={[errors.password]} />}
                   </Field>
                   <Field>
-                    <FieldLabel htmlFor="confirm-password">
-                      Confirm Password
-                    </FieldLabel>
+                    <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
                     <Input
                       id="confirm-password"
                       type="password"
-                      {...register("confirmPassword")}
+                      {...register('confirmPassword')}
                       required
                     />
-                    <FieldDescription>
-                      Please confirm your password.
-                    </FieldDescription>
+                    <FieldDescription>Please confirm your password.</FieldDescription>
                     {errors.confirmPassword && (
                       <FieldError errors={[errors.confirmPassword]} />
                     )}
                   </Field>
                   <Field>
                     <Button type="submit" disabled={isSubmitting}>
-                      {isSubmitting ? "Resetting..." : "Reset Password"}
+                      {isSubmitting ? 'Resetting...' : 'Reset Password'}
                     </Button>
                     {errors.root && <FieldError errors={[errors.root]} />}
                     <FieldDescription className="text-center">

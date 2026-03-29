@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod';
 import {
   signinSchema,
   signupSchema,
   resetPasswordSchema,
   newPasswordSchema,
-} from "./validators";
+} from './validators';
 
 export type Signin = z.infer<typeof signinSchema>;
 

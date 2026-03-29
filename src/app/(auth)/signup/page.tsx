@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import {
   Card,
@@ -11,23 +11,23 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
   FieldDescription,
-} from "@/components/ui/field";
-import Link from "next/link";
+} from '@/components/ui/field';
+import Link from 'next/link';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signupSchema } from "@/lib/validators";
-import { Signup } from "@/lib/types";
-import { useState } from "react";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signupSchema } from '@/lib/validators';
+import { Signup } from '@/lib/types';
+import { useState } from 'react';
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -40,10 +40,10 @@ export default function SignUpPage() {
   } = useForm<Signup>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
@@ -57,26 +57,22 @@ export default function SignUpPage() {
         },
         {
           onSuccess: () => {
-            toast.success(
-              "If this email can be used, we sent next steps to your inbox.",
-            );
-            router.push(
-              `/verify-email?email=${encodeURIComponent(values.email)}`,
-            );
+            toast.success('If this email can be used, we sent next steps to your inbox.');
+            router.push(`/verify-email?email=${encodeURIComponent(values.email)}`);
           },
           onError: (ctx) => {
-            setError("root", {
-              message: ctx.error.message || "Registration failed",
+            setError('root', {
+              message: ctx.error.message || 'Registration failed',
             });
-            toast.error(ctx.error.message || "Registration failed");
+            toast.error(ctx.error.message || 'Registration failed');
           },
         },
       );
     } catch (error) {
-      setError("root", {
-        message: (error as Error).message || "Registration failed",
+      setError('root', {
+        message: (error as Error).message || 'Registration failed',
       });
-      toast.error((error as Error).message || "Registration failed");
+      toast.error((error as Error).message || 'Registration failed');
     }
   };
 
@@ -99,7 +95,7 @@ export default function SignUpPage() {
                     id="name"
                     type="text"
                     placeholder="John Doe"
-                    {...register("name")}
+                    {...register('name')}
                     required
                   />
                   {errors.name && <FieldError errors={[errors.name]} />}
@@ -110,13 +106,13 @@ export default function SignUpPage() {
                     id="email"
                     type="email"
                     placeholder="m@example.com"
-                    {...register("email")}
+                    {...register('email')}
                     required
                   />
                   {errors.email && <FieldError errors={[errors.email]} />}
                   <FieldDescription>
-                    We&apos;ll use this to contact you. We will not share your
-                    email with anyone else.
+                    We&apos;ll use this to contact you. We will not share your email with
+                    anyone else.
                   </FieldDescription>
                 </Field>
                 <Field>
@@ -124,27 +120,21 @@ export default function SignUpPage() {
                   <Input
                     id="password"
                     type="password"
-                    {...register("password")}
+                    {...register('password')}
                     required
                   />
-                  <FieldDescription>
-                    Must be at least 8 characters long.
-                  </FieldDescription>
+                  <FieldDescription>Must be at least 8 characters long.</FieldDescription>
                   {errors.password && <FieldError errors={[errors.password]} />}
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="confirm-password">
-                    Confirm Password
-                  </FieldLabel>
+                  <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
                   <Input
                     id="confirm-password"
                     type="password"
-                    {...register("confirmPassword")}
+                    {...register('confirmPassword')}
                     required
                   />
-                  <FieldDescription>
-                    Please confirm your password.
-                  </FieldDescription>
+                  <FieldDescription>Please confirm your password.</FieldDescription>
                   {errors.confirmPassword && (
                     <FieldError errors={[errors.confirmPassword]} />
                   )}
@@ -152,7 +142,7 @@ export default function SignUpPage() {
 
                 <Field>
                   <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Creating Account..." : "Create Account"}
+                    {isSubmitting ? 'Creating Account...' : 'Create Account'}
                   </Button>
                   {errors.root && <FieldError errors={[errors.root]} />}
                   <FieldDescription className="px-6 text-center">

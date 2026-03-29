@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
-import { usePathname, useRouter } from "next/navigation";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { authClient } from '@/lib/auth-client';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   LogOut,
   User,
@@ -14,41 +14,36 @@ import {
   CreditCard,
   Wallet,
   BarChart3,
-} from "lucide-react";
-import { useTheme } from "next-themes";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+} from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 const routes = [
   {
-    label: "Dashboard",
+    label: 'Dashboard',
     icon: LayoutDashboard,
-    href: "/dashboard",
-    color: "text-primary",
+    href: '/dashboard',
+    color: 'text-primary',
   },
   {
-    label: "Transactions",
+    label: 'Transactions',
     icon: CreditCard,
-    href: "/transactions",
-    color: "text-sky-500",
+    href: '/transactions',
+    color: 'text-sky-500',
   },
   {
-    label: "Subscriptions",
+    label: 'Subscriptions',
     icon: Wallet,
-    href: "/subscriptions",
-    color: "text-violet-500",
+    href: '/subscriptions',
+    color: 'text-violet-500',
   },
   {
-    label: "Insights",
+    label: 'Insights',
     icon: BarChart3,
-    href: "/insights",
-    color: "text-pink-500",
+    href: '/insights',
+    color: 'text-pink-500',
   },
 ];
 
@@ -62,7 +57,7 @@ export const Header = () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.push("/signin");
+          router.push('/signin');
         },
       },
     });
@@ -100,14 +95,14 @@ export const Header = () => {
                     href={route.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition",
+                      'text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-primary hover:bg-primary/10 rounded-lg transition',
                       pathname === route.href
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground",
+                        ? 'text-primary bg-primary/10'
+                        : 'text-muted-foreground',
                     )}
                   >
                     <div className="flex items-center flex-1">
-                      <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
+                      <route.icon className={cn('h-5 w-5 mr-3', route.color)} />
                       {route.label}
                     </div>
                   </Link>
@@ -124,7 +119,7 @@ export const Header = () => {
         <Button
           variant="outline"
           size="icon"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           className="rounded-full overflow-hidden relative border-muted-foreground/20"
         >
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
