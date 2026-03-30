@@ -1,7 +1,6 @@
 import { SparklesIcon } from 'lucide-react';
 
 import { AppSidebar } from '@/components/dashboard-sidebar';
-import ProfileDropdown from '@/components/dropdown-profile';
 import { Button } from '@/components/ui/button';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { SiteHeader } from '@/components/dashboard-header';
@@ -11,11 +10,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
-        <SiteHeader></SiteHeader>
-        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-6 sm:px-6">
+      <SidebarInset className="flex flex-col h-full overflow-hidden">
+        <SiteHeader />
+        <main className="flex-1 overflow-y-auto w-full max-w-7xl mx-auto px-5 md:px-10">
           {children}
-        </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

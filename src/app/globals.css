@@ -52,6 +52,7 @@
   --shadow-2xl: 0px 1px 2.5px 0px rgb(32 104 140 / 0.15);
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
+  --header-height: 4rem;
 }
 
 .dark {
@@ -142,7 +143,10 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+  
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-sans);
+  
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
@@ -154,6 +158,37 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Headings */
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+  
+  h2 {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+  }
+  
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+  
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  /* Paragraphs and general text */
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+
+  /* Small text elements */
+  small {
+    @apply text-sm font-medium leading-none;
+  }
+
+  /* Optional: Make spans inherit naturally, or set a specific rule */
+  span {
+    @apply text-inherit;
   }
 }
 
