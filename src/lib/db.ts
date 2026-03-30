@@ -15,7 +15,7 @@ export { prisma };
 
 // src/lib/prisma.ts
 import 'dotenv/config';
-import { PrismaClient } from './generated/prisma/client';
+import { PrismaClient } from '@/lib/generated/prisma/client';
 import { PrismaNeon } from '@prisma/adapter-neon';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { neonConfig } from '@neondatabase/serverless';
