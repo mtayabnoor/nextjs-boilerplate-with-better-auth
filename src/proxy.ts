@@ -11,9 +11,16 @@ export default async function proxy(request: NextRequest) {
   const isLoggedIn = !!session?.user;
 
   const isDashboardRoute = request.nextUrl.pathname.startsWith('/dashboard');
+  const isAuthRoute = ['/signin', '/signup', '/verify-email'].some((path) =>
+    request.nextUrl.pathname.startsWith(path),
+  );
 
   if (!isLoggedIn && isDashboardRoute) {
     return NextResponse.redirect(new URL('/signin', request.url));
+  }
+
+    if (isLoggedIn && isAuthRoute) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   if (isLoggedIn && isDashboardRoute && !session.user.emailVerified) {

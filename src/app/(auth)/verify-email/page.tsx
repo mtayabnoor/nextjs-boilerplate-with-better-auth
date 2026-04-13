@@ -65,7 +65,7 @@ function VerifyEmailContent() {
     }
   };
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+    <div className="flex w-full items-center justify-center p-6 md:p-10">
       {emailVerified && (
         <Card className="w-full sm:max-w-md">
           <CardHeader>
