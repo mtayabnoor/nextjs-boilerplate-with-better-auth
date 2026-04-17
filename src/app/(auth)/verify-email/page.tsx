@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { resendVerificationEmail } from '@/lib/actions';
+import { resendVerificationEmail } from '@/lib/actions/email-verification';
 import { authClient } from '@/lib/auth-client';
 
 function VerifyEmailContent() {
